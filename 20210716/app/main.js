@@ -13,6 +13,9 @@ describe("chess_desk", function() {
     it("Desk with height - 4, width - 12, symbol - '*'", function() {
         assert.equal(`* * * * * * \n * * * * * *\n* * * * * * \n * * * * * *`, chess_desk(4, 12, '*'));
     });
+    it("Running with incorrect parameters", function() {
+        assert.throw(() => { chess_desk() }, Error, 'Function running with incorrect parameters. Height and width must be natural numbers greater than zero. Symbol must be char  and not be space.');
+    });
     it("Desk with height - -1, width - 12, symbol - '*'", function() {
         assert.throw(() => { chess_desk(-1, 12, '*') }, RangeError, 'Height and width must be natural numbers greater than zero');
     });
