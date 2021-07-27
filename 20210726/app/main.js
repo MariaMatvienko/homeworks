@@ -10,7 +10,7 @@ function overhaul(l, w, h) {
             return { status: 'failed', reason: 'RangeError: Arguments must be natural numbers less than 1000.' };
     });
 
-    return Math.ceil((l * w * h) / 16);
+    return Math.ceil(((l * h + h * w) * 2) / 16);;
 }
 
 function gold_sand(a1, a2, a3, b1, b2, b3) {
