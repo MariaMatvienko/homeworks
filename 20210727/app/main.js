@@ -13,7 +13,7 @@ function twoOldestAges(Array) {
 function shortestWord(str) {
     const words = str.split(' ');
     const initial_value = words[0].length;
-    const reducer = (accumulator, currentValue) => currentValue.length < accumulator ? accumulator = currentValue.length : accumulator;
+    const reducer = (accumulator, currentValue) => currentValue.length < accumulator ? currentValue.length : accumulator;
     return words.reduce(reducer, initial_value);
 }
 
