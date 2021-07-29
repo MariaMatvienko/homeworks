@@ -57,6 +57,8 @@ function ttt_game(Array) {
 }
 
 function meeting(Array, chairs_count) {
+    if (chairs_count == 0) return 'Game On';
+
     let i = 0;
     let res_counter = 0;
     let res_array = [];
@@ -66,6 +68,8 @@ function meeting(Array, chairs_count) {
         res_counter += free_chairs;
         i += 1;
     }
+
+    if (res_counter < chairs_count) return 'Not enough!';
     return res_array;
 }
 
