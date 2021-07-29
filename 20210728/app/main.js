@@ -8,32 +8,49 @@ function order(str) {
     return res_arr;
 }
 
+function create_combo_array(length) {
+    let Array = [];
+
+    for (let i = 0; i < length * length; i += length) {
+        let small_array = [];
+        for (let j = 0; j < length; j += 1) {
+            small_array.push(j + i);
+        }
+        Array.push(small_array);
+    }
+
+    for (let i = 0; i < length; i += 1) {
+        let small_array = [];
+        for (let j = 0; j < length * length; j += length) {
+            small_array.push(j + i);
+        }
+        Array.push(small_array);
+    }
+
+    let small_array = [];
+    let step = 0;
+    for (let j = 0; j < length * length; j += length) {
+        small_array.push(j + step);
+        step += 1;
+    }
+    Array.push(small_array);
+
+    small_array = [];
+    step = length - 1;
+    for (let j = 0; j < length * length; j += length) {
+        small_array.push(j + step);
+        step -= 1;
+    }
+    Array.push(small_array);
+
+    return Array;
+}
+
 function ttt_game(Array) {
     const field_size = Array.length;
     const player_one = 1;
     const player_two = 2;
-    const combo = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-
-        // [0, 1, 2, 3],
-        // [4, 5, 6, 7],
-        // [8, 9, 10, 11],
-        // [12, 13, 14, 15],
-        // [0, 4, 8, 12],
-        // [1, 5, 9, 13],
-        // [2, 6, 10, 14],
-        // [3, 7, 11, 15],
-        // [0, 5, 10, 15],
-        // [3, 6, 9, 12],
-
-    ];
+    const combo = create_combo_array(field_size);
     Array = Array.flat();
 
     for (let i = 0; i < combo.length; i += 1) {
