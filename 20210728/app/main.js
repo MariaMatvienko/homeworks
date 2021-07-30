@@ -5,7 +5,7 @@ function order(str) {
     for (let i = 0; i < words.length; i += 1) {
         res_arr[words[i].replace(r, '') - 1] = words[i];
     }
-    return res_arr;
+    return res_arr.join(' ');
 }
 
 function create_combo_array(length) {
