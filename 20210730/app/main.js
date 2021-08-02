@@ -6,27 +6,29 @@ function q_to_d(str) {
         .join('');
 }
 
+function d_to_q(number) {
+    number = number.toString();
+    return [].map.call(number, function(el, i) {
+        let res;
+        if (el == 0) number[i - 1] == '~' ? res = '~' : res = '~~';
+        else res = '@'.repeat(Number(el)) + '~';
+        return res;
+    }).join('');
+}
+
 function quipu(str) {
     const reg = /[-+/*]/gi;
     const sighs = str.match(reg);
     const numbers = str.split(reg);
     let res = numbers.reduce((arr, v, i) => arr.concat(q_to_d(v), sighs[i]), []);
-    return eval(res.join(''));
+    return d_to_q(eval(res.join(''))).slice(0, -1);
 }
 
-/* The main function that returns the max possible product */
-function maxProd(n) {
+function multi(arr) {
+    return arr.reduce((accumulator, current) => {
+        return accumulator *= current;
+    });
 
-    // n equals to 2 or 3 must be handled explicitly
-    if (n == 2 || n == 3) return (n - 1);
-
-    // Keep removing parts of size 3 while n is greater than 4
-    let res = 1;
-    while (n > 4) {
-        n -= 3;
-        res *= 3; // Keep multiplying 3 to res
-    }
-    return (n * res); // The last part multiplied by previous parts
 }
 
 function findPartMaxProd(n) {
@@ -44,7 +46,7 @@ function findPartMaxProd(n) {
         print_terms(left - 1, min + 1, i);
         if (left == 0) {
             let small_Array = [];
-            for (let j = i; j >= 0; --j) {
+            for (let j = i; j >= 0; j -= 1) {
                 small_Array.push(sum[j]);
             }
             Array.push(small_Array);
@@ -52,9 +54,14 @@ function findPartMaxProd(n) {
         }
     }
     print_terms(n);
-    return Array.sort();
+    Array.sort();
+    const max = Array.reduce(((acc, el) => acc > multi(el) ? acc : multi(el)), multi(Array[0]));
+    const res_array = [];
+    Array.map((el) => multi(el) == max ? res_array.push(el) : true);
+    return [...res_array, max];
 }
-console.log(findPartMaxProd(8));
+
+console.log(findPartMaxProd(10));
 
 function tickets(Array) {
     let cashbox = {
@@ -81,4 +88,4 @@ function tickets(Array) {
 }
 // console.log(tickets([25, 25, 50, 50, 100]));
 // console.log(maxProd(10));
-// console.log(quipu("@~@@-@@*@@~~"));
+console.log(quipu("@~@@+@@*@@~~"));
