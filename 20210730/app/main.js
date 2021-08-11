@@ -34,11 +34,10 @@ function multi(arr) {
 function findPartMaxProd(n) {
     let sum = [];
     let Array = [];
-    let counter = 0;
 
     function print_terms(left, min = 0, i = 0) {
         if (left < 0 || min == n)
-            return Array;
+            return;
         sum[i] = min;
         if (min != 0) {
             print_terms(left - min, min, i + 1);
@@ -50,9 +49,9 @@ function findPartMaxProd(n) {
                 small_Array.push(sum[j]);
             }
             Array.push(small_Array);
-            counter += 1;
         }
     }
+
     print_terms(n);
     Array.sort();
     const max = Array.reduce(((acc, el) => acc > multi(el) ? acc : multi(el)), multi(Array[0]));
