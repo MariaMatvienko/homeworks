@@ -25,7 +25,7 @@ describe("sort_triangle", function() {
                 b: 4,
                 c: 5
             }])
-        }, RangeError, 'Thats impossible triangle.');
+        }, RangeError, 'Triangle must be possible.');
     });
     it("Triangles: ABC(3,4). Expected output: Error", function() {
         assert.throw(() => {
@@ -34,7 +34,7 @@ describe("sort_triangle", function() {
                 a: 3,
                 b: 4
             }])
-        }, Error, 'Function running with incorrect parameters. Function takes array obj with vertices triangle and length of its sides');
+        }, Error, 'Function running with incorrect parameters.');
     });
     it("Triangles: _(3,4,5). Expected output: Error", function() {
         assert.throw(() => {
@@ -43,7 +43,7 @@ describe("sort_triangle", function() {
                 b: 4,
                 c: 5
             }])
-        }, Error, 'Function running with incorrect parameters. Function takes array obj with vertices triangle and length of its sides');
+        }, Error, 'Function running with incorrect parameters.');
     });
     it("Triangles: 100('a','b','c'). Expected output: TypeError", function() {
         assert.throw(() => {

@@ -15,18 +15,18 @@ describe("envelope", function() {
         assert.equal(0, envelope({ a: 15, b: 10 }, { c: 15, d: 10 }));
     });
     it("Running with incorrect parameters", function() {
-        assert.throw(() => { envelope() }, Error, 'Function running with incorrect parameters. Function takes 2 obj with sides of enveloes which must be numbers greater than zero and less than 1000000.');
+        assert.throw(() => { envelope() }, Error, 'Function running with incorrect parameters.');
     });
     it("Running with incorrect parameters", function() {
-        assert.throw(() => { envelope(10, 25, 5, 4) }, Error, 'Function running with incorrect parameters. Function takes 2 obj with sides of enveloes which must be numbers greater than zero and less than 1000000.');
+        assert.throw(() => { envelope(10, 25, 5, 4) }, Error, 'Function running with incorrect parameters.');
     });
     it("Envelope1('bbb','aaaa'), envelope2(2, 10). Expected output: TypeError", function() {
-        assert.throw(() => { envelope({ a: 'bbb', b: 'aaaa' }, { c: 2, d: 10 }) }, TypeError, 'Sides of enveloes must be numbers');
+        assert.throw(() => { envelope({ a: 'bbb', b: 'aaaa' }, { c: 2, d: 10 }) }, TypeError, 'Sides of enveloes must be numbers.');
     });
     it("Envelope1(111111111111, 1), envelope2(15, 10). Expected output: RangeError", function() {
-        assert.throw(() => { envelope({ a: 111111111111, b: 1 }, { c: 15, d: 10 }) }, RangeError, 'Sides of enveloes must be numbers greater than zero and less than 1000000');
+        assert.throw(() => { envelope({ a: 111111111111, b: 1 }, { c: 15, d: 10 }) }, RangeError, 'Sides of enveloes must be numbers greater than zero and less than 1000000.');
     });
     it("Envelope1(0, 0), envelope2(15, 10). Expected output: RangeError", function() {
-        assert.throw(() => { envelope({ a: 0, b: 0 }, { c: 15, d: 10 }) }, RangeError, 'Sides of enveloes must be numbers greater than zero and less than 1000000');
+        assert.throw(() => { envelope({ a: 0, b: 0 }, { c: 15, d: 10 }) }, RangeError, 'Sides of enveloes must be numbers greater than zero and less than 1000000.');
     });
 });

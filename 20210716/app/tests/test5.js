@@ -1,18 +1,24 @@
-describe("numerical_sequence", function() {
-    it("Length: 5, minimum square value: 25. Expected output: '5, 6, 7, 8, 9'", function() {
-        assert.equal('5, 6, 7, 8, 9', numerical_sequence(5, 25));
+describe("luck_ticket", function() {
+    it("Interval: min: 1, max: 112. Expected output: winner: hard, simple: 0, hard: 1", function() {
+        assert.equal({ winner: 'hard', tickets: { simple: 0, hard: 1 } }, luck_ticket({ min: 1, max: 112 }));
     });
-    it("Length: 5, minimum square value: 25. Expected output: true", function() {
-        assert.isString(numerical_sequence(5, 25));
+    it("Interval: min: 112, max: 1. Expected output: winner: hard, simple: 0, hard: 1", function() {
+        assert.equal({ winner: 'hard', tickets: { simple: 0, hard: 1 } }, luck_ticket({ min: 112, max: 1 }));
     });
-    it("Length: -5, minimum square value: 25. Expected output: Error", function() {
-        assert.deepEqual({ status: 'failed', reason: 'RangeError: Length and minimum square value must be greater than 0.' }, numerical_sequence(-5, 25));
+    it("Interval: min: 1, max: 2. Expected output: winner: both,  simple: 0, hard: 0 ", function() {
+        assert.equal({ winner: 'both', tickets: { simple: 0, hard: 0 } }, luck_ticket({ min: 1, max: 2 }));
     });
-    it("Length: 2.3, minimum square value: 25. Expected output: Error", function() {
-        assert.deepEqual({ status: 'failed', reason: 'RangeError: Length and minimum square value must be integer.' }, numerical_sequence(-5, 25));
+    it("Interval: min: 'sss', max: 'sss'. Expected output: Error", function() {
+        assert.deepEqual({ status: 'failed', reason: 'TypeError: Max and min must be numbers.' }, luck_ticket({ min: 'sss', max: 'sss' }));
     });
-    it("Length: 'aaa', minimum square value: 25. Expected output: Error", function() {
-        assert.deepEqual({ status: 'failed', reason: 'TypeError: Length and minimum square value must be numbers.' }, numerical_sequence('aaa', 25));
+    it("Interval: min: -1, max: 0. Expected output: Error", function() {
+        assert.deepEqual({ status: 'failed', reason: 'RangeError: Min and max must be integer and greater than 0 and less than 1000000.' }, luck_ticket({ min: -1, max: 0 }));
+    });
+    it("Interval: min: 2.3, max: 10. Expected output: Error", function() {
+        assert.deepEqual({ status: 'failed', reason: 'RangeError: Min and max must be integer and greater than 0 and less than 1000000.' }, luck_ticket({ min: 2.3, max: 10 }));
+    });
+    it("Empty obj. Expected output: Error", function() {
+        assert.deepEqual({ status: 'failed', reason: 'Error: Function running with incorrect parameters.' }, luck_ticket({}));
     });
 
 });

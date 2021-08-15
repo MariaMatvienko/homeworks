@@ -15,6 +15,6 @@ describe("palindrome", function() {
         assert.throw(() => { palindrome(111.2) }, RangeError, 'Number must be integer and greater than 9 and less than 9007199254740991');
     });
     it("Palindrome: 'aaaaa'. Expected output: TypeError", function() {
-        assert.throw(() => { palindrome('aaaaa') }, TypeError, 'Number must be integer');
+        assert.throw(() => { palindrome('aaaaa') }, TypeError, 'Number must be integer and greater than 9 and less than 9007199254740991');
     });
 });
