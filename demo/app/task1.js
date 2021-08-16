@@ -1,6 +1,6 @@
-function isValid(height, width, symbol) {
-
-    if (arguments.length != 3) {
+function isValidChessDesk(height, width, symbol) {
+    console.log(typeof arguments);
+    if (Array.from(arguments).includes(undefined)) {
         return {
             status: 'failed',
             reason: 'Error: Function running with incorrect parameters.'
@@ -27,9 +27,9 @@ function isValid(height, width, symbol) {
     return false;
 }
 
-function chess_desk(height, width, symbol) {
+function chessDesk(height, width, symbol) {
 
-    const errorMessage = isValid(height, width, symbol);
+    const errorMessage = isValidChessDesk(height, width, symbol);
     if (errorMessage) return errorMessage;
 
     let result = '';
@@ -43,4 +43,4 @@ function chess_desk(height, width, symbol) {
     }
     return result;
 }
-console.log(chess_desk(4, 15, '*'));
+console.log(chessDesk(4, 12, '*'));

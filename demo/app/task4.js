@@ -1,5 +1,11 @@
-function isValid(number) {
+function isValidPalindrome(number) {
 
+    if (Array.from(arguments).includes(undefined)) {
+        return {
+            status: 'failed',
+            reason: 'Error: Function running with incorrect parameters.'
+        };
+    }
     if (!isNaturalWithLimit(number, 9007199254740991) || number <= 9) {
         return {
             status: 'failed',
@@ -11,7 +17,7 @@ function isValid(number) {
 }
 
 function palindrome(number) {
-    const errorMessage = isValid(number);
+    const errorMessage = isValidPalindrome(number);
     if (errorMessage) return errorMessage;
 
     number = number.toString();
@@ -20,10 +26,10 @@ function palindrome(number) {
     const result = [];
     for (let i = 0; i < length - 1; i += 1) {
         for (let j = i + 1; j < length; j += 1) {
-            const part_of_string = number.substring(i, j + 1);
-            const part_of_string_reverse = reverse.substring(length - j - 1, length - i);
-            if (j - i > 0 && part_of_string == part_of_string_reverse) {
-                result.push(part_of_string);
+            const partOfString = number.substring(i, j + 1);
+            const partOfStringReverse = reverse.substring(length - j - 1, length - i);
+            if (j - i > 0 && partOfString == partOfStringReverse) {
+                result.push(partOfString);
             }
         }
     }

@@ -1,5 +1,4 @@
-function isValid(n, m) {
-
+function isValidNumericalSequence(n, m) {
     if (!isNaturalWithLimit(n) || !isNaturalWithLimit(m)) {
         return {
             status: 'failed',
@@ -10,9 +9,9 @@ function isValid(n, m) {
     return false;
 }
 
-function numerical_sequence(n, m) {
+function numericalSequence(n, m) {
 
-    const errorMessage = isValid(n, m);
+    const errorMessage = isValidNumericalSequence(n, m);
     if (errorMessage) return errorMessage;
 
     const result = [];
@@ -22,4 +21,4 @@ function numerical_sequence(n, m) {
     }
     return result.join(', ');
 }
-console.log(numerical_sequence(3, 10));
+console.log(numericalSequence(3, 10));

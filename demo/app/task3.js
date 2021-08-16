@@ -1,15 +1,15 @@
-function isValid(arr_triangle) {
-    if (!Array.isArray(arr_triangle)) {
+function isValidSortTriangle(arrTriangle) {
+    if (!Array.isArray(arrTriangle)) {
         return {
             status: 'failed',
             reason: 'Error: Function running with incorrect parameters.'
         };
     }
 
-    const length = arr_triangle.length;
+    const length = arrTriangle.length;
 
     for (let i = 0; i < length; i += 1) {
-        const triangle = arr_triangle[i];
+        const triangle = arrTriangle[i];
 
         if (typeof(triangle.vertices) !== 'string') {
             return {
@@ -30,7 +30,7 @@ function isValid(arr_triangle) {
                     reason: 'TypeError: Sides of triangle must be numbers and vertices must be string.'
                 };
             }
-            if (vertices.includes(side)) {
+            if (!vertices.includes(side.toUpperCase())) {
                 return {
                     status: 'failed',
                     reason: 'Error: Vertices must match the names of the sides.'
@@ -61,18 +61,18 @@ function square(triangle) {
     return result;
 }
 
-function sort_triangle(arr_triangle) {
+function sortTriangle(arrTriangle) {
 
-    const errorMessage = isValid(arr_triangle);
+    const errorMessage = isValidSortTriangle(arrTriangle);
     if (errorMessage) return errorMessage;
 
-    arr_triangle.sort(function(a, b) {
+    arrTriangle.sort(function(a, b) {
         return square(b) - square(a);
     });
-    const result = arr_triangle.map(el => el.vertices);
+    const result = arrTriangle.map(el => el.vertices);
     return result;
 }
-console.log(sort_triangle([{
+console.log(sortTriangle([{
     vertices: 'ABC',
     a: 3,
     b: 4,

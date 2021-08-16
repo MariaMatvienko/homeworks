@@ -1,4 +1,4 @@
-function isValid(context) {
+function isValidLuckTicket(context) {
 
     if (!(context.hasOwnProperty('min') && context.hasOwnProperty('max'))) {
         return {
@@ -55,7 +55,7 @@ function isHardMethod(ticket) {
 
 function luckTicket(context) {
 
-    const errorMessage = isValid(context);
+    const errorMessage = isValidLuckTicket(context);
     if (errorMessage) return errorMessage;
 
     let max = context.max;
@@ -90,6 +90,7 @@ function luckTicket(context) {
         winner: winner,
         tickets: { simple: simpleCounter, hard: hardCounter }
     };
+    console.log(result)
     return result;
 
 }

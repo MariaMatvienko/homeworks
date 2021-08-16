@@ -1,4 +1,10 @@
-function isValid(env1, env2) {
+function isValidEnvelope(env1, env2) {
+    if (typeof(env1) !== 'object' || typeof(env2) !== 'object') {
+        return {
+            status: 'failed',
+            reason: 'Error: Function running with incorrect parameters.'
+        };
+    }
     const validEnv1 = env1.hasOwnProperty('a') && env1.hasOwnProperty('b');
     const validEnv2 = env2.hasOwnProperty('c') && env2.hasOwnProperty('d');
     if (!validEnv1 || !validEnv2) {
@@ -17,7 +23,7 @@ function isValid(env1, env2) {
                 reason: 'TypeError: Sides of enveloes must be numbers.'
             };
         }
-        if (!isNaturalWithLimit(arraySides[i], 1000000)) {
+        if (arraySides[i] < 1 || arraySides[i] > 1000000) {
             return {
                 status: 'failed',
                 reason: 'RangeError: Sides of enveloes must be numbers greater than zero and less than 1000000.'
@@ -29,7 +35,7 @@ function isValid(env1, env2) {
 }
 
 
-function is(value, arguments) {
+function isEqual(value, arguments) {
     const arr = arguments.map(el => el == value);
     const result = (arr[0] && arr[1]) || (arr[2] && arr[3]);
     return result;
@@ -37,7 +43,7 @@ function is(value, arguments) {
 
 function envelope(env1, env2) {
 
-    const errorMessage = isValid(env1, env2);
+    const errorMessage = isValidEnvelope(env1, env2);
     if (errorMessage) return errorMessage;
 
     const substraction = [];
@@ -47,8 +53,7 @@ function envelope(env1, env2) {
     substraction[3] = Math.sign(env1.b - env2.c);
 
     let result = 0;
-    if (is(-1, substraction)) result = 1;
-    if (is(1, substraction)) result = 2;
+    if (isEqual(-1, substraction)) result = 1;
+    if (isEqual(1, substraction)) result = 2;
     return result;
 }
-console.log(envelope({ a: 30, b: 12 }, { c: 12, d: 16 }));

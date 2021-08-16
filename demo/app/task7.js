@@ -1,5 +1,10 @@
-function isValid(context) {
-
+function isValidFibonacci(context) {
+    if (typeof(context) !== 'object') {
+        return {
+            status: 'failed',
+            reason: 'Error: Function running with incorrect parameters.'
+        };
+    }
     const hasMinMax = context.hasOwnProperty('min') && context.hasOwnProperty('max');
     const hasLength = context.hasOwnProperty('length');
 
@@ -27,18 +32,21 @@ function isValid(context) {
 
 function fibonacci(context) {
 
-    const errorMessage = isValid(context);
+    const errorMessage = isValidFibonacci(context);
     if (errorMessage) return errorMessage;
 
-    const fibbonachiArray = [];
-    fibbonachiArray[0] = 1;
-    fibbonachiArray[1] = 1;
+    const fibbonachiArray = [1, 1];
 
-    let min;
-    let max;
-    let length;
+    let max = context.max;
+    let min = context.min;
     context.hasOwnProperty('min') ? min = context.min : min = 0;
     context.hasOwnProperty('max') ? max = context.max : max = Infinity;
+    if (min > max) {
+        min = context.max;
+        max = context.min;
+    }
+
+    let length;
     context.hasOwnProperty('length') ? length = context.length : length = Infinity;
 
     const lengthWithMin = length + min;
