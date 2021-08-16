@@ -69,6 +69,7 @@ function sortTriangle(arrTriangle) {
     arrTriangle.sort(function(a, b) {
         return square(b) - square(a);
     });
+
     const result = arrTriangle.map(el => el.vertices);
     return result;
 }

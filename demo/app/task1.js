@@ -43,4 +43,4 @@ function chessDesk(height, width, symbol) {
     }
     return result;
 }
-console.log(chessDesk(4, 12, '*'));
+console.log(chessDesk(4, 8, '*'));
